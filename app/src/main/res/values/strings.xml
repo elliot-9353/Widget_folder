@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Folder Widget</string>
+    <string name="widget_description">مجلد تطبيقات بشكل مخصص على الشاشة الرئيسية</string>
+
+    <string name="shape_flower">زهرة</string>
+
+    <string name="config_title">إعداد المجلد</string>
+    <string name="section_shape">الشكل</string>
+    <string name="section_color">اللون</string>
+    <string name="section_count">أقصى عدد للتطبيقات: %1$d</string>
+    <string name="section_apps">التطبيقات (%1$d/%2$d)</string>
+    <string name="color_hue">درجة اللون</string>
+    <string name="color_saturation">التشبّع</string>
+    <string name="color_brightness">السطوع</string>
+    <string name="search_apps">ابحث عن تطبيق</string>
+    <string name="save">حفظ</string>
+
+    <string name="main_title">Folder Widget</string>
+    <string name="main_steps">لإضافة المجلد: اضغط مطولاً على الشاشة الرئيسية ← الأدوات (Widgets) ← Folder Widget.</string>
+    <string name="add_widget">إضافة المجلد للشاشة الرئيسية</string>
+    <string name="pin_unsupported">launcher جهازك لا يدعم الإضافة المباشرة، استخدم الخطوات أعلاه.</string>
+    <string name="popup_empty">لا توجد تطبيقات في هذا المجلد. أعد ضبط الويدجت من الإعدادات.</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Folder Widget</string>
+    <string name="widget_description">A custom-shaped app folder for your home screen</string>
+
+    <string name="shape_flower">Flower</string>
+
+    <string name="config_title">Folder setup</string>
+    <string name="section_shape">Shape</string>
+    <string name="section_color">Color</string>
+    <string name="section_count">Max apps: %1$d</string>
+    <string name="section_apps">Apps (%1$d/%2$d)</string>
+    <string name="color_hue">Hue</string>
+    <string name="color_saturation">Saturation</string>
+    <string name="color_brightness">Brightness</string>
+    <string name="search_apps">Search apps</string>
+    <string name="save">Save</string>
+
+    <string name="main_title">Folder Widget</string>
+    <string name="main_steps">To add the folder: long-press the home screen → Widgets → Folder Widget.</string>
+    <string name="add_widget">Add folder to home screen</string>
+    <string name="pin_unsupported">Your launcher does not support direct pinning. Use the steps above.</string>
+    <string name="popup_empty">This folder has no apps. Reconfigure the widget from its settings.</string>
+</resources>
