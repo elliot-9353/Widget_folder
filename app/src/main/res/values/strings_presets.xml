@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shape_roundness">الاستدارة</string>
+    <string name="roundness_hint">عند الحد الأقصى تصبح الوردة دائرة كاملة (الأيقونات تبقى في أماكنها).</string>
+
+    <string name="section_presets">القوالب المحفوظة</string>
+    <string name="save_preset">حفظ كقالب</string>
+    <string name="preset_name">اسم القالب</string>
+    <string name="preset_include_apps">حفظ التطبيقات معه</string>
+    <string name="preset_default_name">قالب %1$d</string>
+    <string name="preset_saved">تم حفظ القالب</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_delete">حذف</string>
+
+    <string name="presets_title">ويدجتاتي المحفوظة</string>
+    <string name="presets_empty">لا توجد قوالب بعد. من شاشة إعدادات أي ويدجت اضغط «حفظ كقالب» لتظهر هنا.</string>
+    <string name="preset_info_apps">%1$s · %2$d تطبيق</string>
+    <string name="preset_info_no_apps">%1$s · بدون تطبيقات</string>
+    <string name="add_to_home">إضافة للشاشة</string>
+    <string name="delete_preset_title">حذف القالب؟</string>
+    <string name="delete_preset_message">سيتم حذف «%1$s» من التطبيق. الويدجتات الموجودة على الشاشة لن تتأثر.</string>
+
+    <string name="popup_add">إضافة</string>
+</resources>

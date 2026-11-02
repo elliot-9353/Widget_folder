@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shape_grid">شبكة</string>
+    <string name="grid_overflow_hint">اختر كل التطبيقات التي تريدها. عدد الخانات يتحدد بحجم الويدجت (كبّره أو صغّره كما تشاء)، وإذا لم تتسع كلها تتحول آخر خانة إلى زر النقاط الأربع الذي يفتح القائمة الكاملة.</string>
+</resources>

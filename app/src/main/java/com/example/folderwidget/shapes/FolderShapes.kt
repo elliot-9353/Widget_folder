@@ -4,8 +4,8 @@ package com.example.folderwidget.shapes
 object FolderShapes {
     val all: List<FolderShape> = listOf(
         FlowerShape,
-        // CircleShape,
-        // SquircleShape,
+        HorizontalShape,
+        GridShape,
     )
 
     val default: FolderShape get() = all.first()

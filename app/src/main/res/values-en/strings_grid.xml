@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shape_grid">Grid</string>
+    <string name="grid_overflow_hint">Pick every app you want. The number of cells follows the widget size (resize it freely); if they do not all fit, the last cell becomes the four-dot button that opens the full list.</string>
+</resources>

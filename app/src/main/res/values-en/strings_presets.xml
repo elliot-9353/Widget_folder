@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shape_roundness">Roundness</string>
+    <string name="roundness_hint">At the maximum the flower becomes a perfect circle (the icons stay where they are).</string>
+
+    <string name="section_presets">Saved presets</string>
+    <string name="save_preset">Save as preset</string>
+    <string name="preset_name">Preset name</string>
+    <string name="preset_include_apps">Save the apps with it</string>
+    <string name="preset_default_name">Preset %1$d</string>
+    <string name="preset_saved">Preset saved</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+
+    <string name="presets_title">My saved widgets</string>
+    <string name="presets_empty">No presets yet. In any widget settings tap "Save as preset" and it will show up here.</string>
+    <string name="preset_info_apps">%1$s · %2$d apps</string>
+    <string name="preset_info_no_apps">%1$s · no apps</string>
+    <string name="add_to_home">Add to home screen</string>
+    <string name="delete_preset_title">Delete preset?</string>
+    <string name="delete_preset_message">"%1$s" will be removed from the app. Widgets already on the home screen are not affected.</string>
+
+    <string name="popup_add">Add</string>
+</resources>

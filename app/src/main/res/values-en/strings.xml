@@ -4,6 +4,7 @@
     <string name="widget_description">A custom-shaped app folder for your home screen</string>
 
     <string name="shape_flower">Flower</string>
+    <string name="shape_horizontal">Horizontal</string>
 
     <string name="config_title">Folder setup</string>
     <string name="section_shape">Shape</string>

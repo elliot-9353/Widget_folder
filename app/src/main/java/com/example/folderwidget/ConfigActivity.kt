@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.folderwidget.data.FolderConfig
 import com.example.folderwidget.data.FolderPrefs
+import com.example.folderwidget.data.PresetStore
 import com.example.folderwidget.ui.ConfigScreen
 import com.example.folderwidget.ui.FolderTheme
 
@@ -29,10 +30,16 @@ class ConfigActivity : ComponentActivity() {
             return
         }
 
-        val initial = FolderPrefs.load(this, widgetId)
+        // A brand-new widget may start from a preset chosen in the app ("add to home screen").
+        val initial = if (FolderPrefs.has(this, widgetId)) {
+            FolderPrefs.load(this, widgetId)
+        } else {
+            PresetStore.takePending(this)?.applyTo(FolderConfig()) ?: FolderConfig()
+        }
+        val sizeDp = FolderWidgetProvider.sizeDp(this, AppWidgetManager.getInstance(this), widgetId)
         setContent {
             FolderTheme {
-                ConfigScreen(initial = initial, onSave = ::save)
+                ConfigScreen(initial = initial, widgetSizeDp = sizeDp, onSave = ::save)
             }
         }
     }

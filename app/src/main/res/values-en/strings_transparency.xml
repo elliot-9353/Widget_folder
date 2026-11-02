@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="color_transparency">Transparency</string>
+    <string name="count_overflow_hint">Only %1$d apps are shown on the widget; the rest appear in the list when you tap the center button.</string>
+</resources>

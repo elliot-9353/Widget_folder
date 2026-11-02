@@ -14,19 +14,32 @@ object FlowerShape : FolderShape {
     override val nameRes = R.string.shape_flower
     override val minApps = 3
     override val maxApps = 8
+    override val maxSelectable = 24
+    override val supportsRoundness = true
 
     private const val RING = 0.29f   // radius of the icon ring (fraction of size)
     private const val BASE = 0.44f   // average radius of the blob
     private const val AMP = 0.035f   // how deep the lobes are
     private val HALF_PI = (PI / 2).toFloat()
 
-    override fun outline(count: Int, size: Float): Path {
+    override fun outline(count: Int, size: Float): Path = lobes(count, size, 0f)
+
+    /** [roundness] 0 = full lobes, 1 = a perfect circle. */
+    override fun outline(count: Int, width: Float, height: Float, roundness: Float): Path {
+        val size = min(width, height)
+        return lobes(count, size, roundness).apply {
+            offset((width - size) / 2f, (height - size) / 2f)
+        }
+    }
+
+    private fun lobes(count: Int, size: Float, roundness: Float): Path {
         val c = size / 2f
         val steps = 360
+        val amp = AMP * (1f - roundness.coerceIn(0f, 1f))
         val path = Path()
         for (i in 0..steps) {
             val a = (2.0 * PI * i / steps).toFloat()
-            val r = size * (BASE + AMP * cos(count * a))
+            val r = size * (BASE + amp * cos(count * a))
             val t = a - HALF_PI // first lobe points up
             val x = c + r * cos(t)
             val y = c + r * sin(t)

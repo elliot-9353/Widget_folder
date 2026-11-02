@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- The folder. Its size is decided by the tap cells (the only wrap_content child), so the body and
+         the icon picture always match the cells exactly, and the whole folder is centered in the widget. -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <!-- Folder body: a white rounded rectangle, tinted and made transparent by FolderWidgetProvider. -->
+        <ImageView
+            android:id="@+id/widget_body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/grid_body" />
+
+        <!-- The icons: a picture exactly as big as the cells (without the padding), centered, never scaled. -->
+        <ImageView
+            android:id="@+id/widget_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center" />
+
+        <!-- Tap cells: 8 columns x 10 rows of 43dp (GridShape.PITCH_DP) with 4dp padding (GridShape.PAD_DP).
+             FolderWidgetProvider shows only the cells in use and gives EVERY cell a click action on every
+             update (an app, the list, or a no-op), because the launcher keeps old click actions of views
+             that are not set again. -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+                <LinearLayout
+                    android:id="@+id/grow_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_0_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_0_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_0_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_0_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_0_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_0_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_0_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_0_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_1_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_1_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_1_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_1_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_1_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_1_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_1_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_1_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_2_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_2_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_2_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_2_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_2_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_2_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_2_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_2_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_3_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_3_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_3_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_3_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_3_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_3_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_3_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_3_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_4_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_4_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_4_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_4_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_4_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_4_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_4_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_4_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_5_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_5_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_5_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_5_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_5_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_5_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_5_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_5_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_6_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_6_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_6_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_6_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_6_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_6_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_6_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_6_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_7_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_7_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_7_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_7_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_7_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_7_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_7_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_7_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_8_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_8_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_8_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_8_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_8_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_8_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_8_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_8_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/grow_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <FrameLayout android:id="@+id/gcell_9_0" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_9_1" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_9_2" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_9_3" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_9_4" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_9_5" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_9_6" android:layout_width="43dp" android:layout_height="43dp" />
+                    <FrameLayout android:id="@+id/gcell_9_7" android:layout_width="43dp" android:layout_height="43dp" />
+                </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

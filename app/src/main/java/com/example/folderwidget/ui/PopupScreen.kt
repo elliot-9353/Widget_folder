@@ -2,6 +2,8 @@ package com.example.folderwidget.ui
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -38,12 +40,17 @@ import com.example.folderwidget.R
 
 class PopupApp(val pkg: String, val label: String, val icon: ImageBitmap?)
 
+/**
+ * The list of apps. The last cell is always a "+" that opens the widget settings ([onAdd]),
+ * so apps can be added from here at any time, even when the list is empty.
+ */
 @Composable
 fun PopupScreen(
     apps: List<PopupApp>,
     color: Int,
     onClose: () -> Unit,
     onLaunch: (PopupApp) -> Unit,
+    onAdd: () -> Unit,
 ) {
     var shown by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { shown = true }
@@ -61,6 +68,7 @@ fun PopupScreen(
     ) {
         Column(
             modifier = Modifier
+                .padding(12.dp)
                 .graphicsLayer {
                     alpha = progress
                     scaleX = 0.8f + 0.2f * progress
@@ -70,7 +78,8 @@ fun PopupScreen(
                 .background(Color(color))
                 // swallow taps so touching the panel does not close it
                 .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) {}
-                .padding(20.dp),
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             if (apps.isEmpty()) {
@@ -80,18 +89,27 @@ fun PopupScreen(
                     textAlign = TextAlign.Center,
                     modifier = Modifier.width(220.dp),
                 )
-            } else {
-                val cols = when {
-                    apps.size <= 4 -> apps.size
-                    apps.size <= 6 -> 3
-                    else -> 4
-                }
-                apps.chunked(cols).forEachIndexed { rowIndex, row ->
-                    if (rowIndex > 0) Spacer(Modifier.size(14.dp))
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        row.forEach { app -> AppCell(app, textColor) { onLaunch(app) } }
-                        repeat(cols - row.size) { Spacer(Modifier.width(76.dp)) }
+                Spacer(Modifier.size(12.dp))
+            }
+
+            // null = the "+" cell, always last
+            val cells: List<PopupApp?> = apps + listOf<PopupApp?>(null)
+            val cols = when {
+                cells.size <= 4 -> cells.size
+                cells.size <= 6 -> 3
+                else -> 4
+            }
+            cells.chunked(cols).forEachIndexed { rowIndex, row ->
+                if (rowIndex > 0) Spacer(Modifier.size(14.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    row.forEach { app ->
+                        if (app != null) {
+                            AppCell(app, textColor) { onLaunch(app) }
+                        } else {
+                            AddCell(textColor, onAdd)
+                        }
                     }
+                    repeat(cols - row.size) { Spacer(Modifier.width(70.dp)) }
                 }
             }
         }
@@ -102,7 +120,7 @@ fun PopupScreen(
 private fun AppCell(app: PopupApp, textColor: Color, onClick: () -> Unit) {
     Column(
         modifier = Modifier
-            .width(76.dp)
+            .width(70.dp)
             .clip(RoundedCornerShape(16.dp))
             .clickable(onClick = onClick)
             .padding(vertical = 6.dp),
@@ -122,6 +140,39 @@ private fun AppCell(app: PopupApp, textColor: Color, onClick: () -> Unit) {
         Spacer(Modifier.size(6.dp))
         Text(
             app.label,
+            color = textColor,
+            fontSize = 12.sp,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = 2.dp),
+        )
+    }
+}
+
+/** The "+" cell: same size as an app, opens the settings to add apps. */
+@Composable
+private fun AddCell(textColor: Color, onClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .width(70.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .clickable(onClick = onClick)
+            .padding(vertical = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .clip(RoundedCornerShape(14.dp))
+                .background(textColor.copy(alpha = 0.18f)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text("+", color = textColor, fontSize = 32.sp)
+        }
+        Spacer(Modifier.size(6.dp))
+        Text(
+            stringResource(R.string.popup_add),
             color = textColor,
             fontSize = 12.sp,
             maxLines = 1,

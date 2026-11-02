@@ -13,7 +13,7 @@ import com.example.folderwidget.ui.FolderTheme
 import com.example.folderwidget.ui.PopupApp
 import com.example.folderwidget.ui.PopupScreen
 
-/** Transparent window shown when the widget is tapped: lists every app of the folder. */
+/** Transparent window shown when the widget is tapped: lists every app of the folder, ending with a "+" cell. */
 class PopupActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class PopupActivity : ComponentActivity() {
         val iconPx = (56 * resources.displayMetrics.density).toInt()
 
         val apps = cfg.apps
-            .take(cfg.count.coerceIn(shape.minApps, shape.maxApps))
+            .take(shape.maxSelectable)
             .mapNotNull { pkg ->
                 if (pm.getLaunchIntentForPackage(pkg) == null) return@mapNotNull null
                 val label = runCatching {
@@ -50,6 +50,16 @@ class PopupActivity : ComponentActivity() {
                     onLaunch = { app ->
                         pm.getLaunchIntentForPackage(app.pkg)?.let {
                             startActivity(it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                        }
+                        finish()
+                    },
+                    // "+" opens this widget's settings, where apps can be added.
+                    onAdd = {
+                        if (widgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
+                            startActivity(
+                                Intent(this, ConfigActivity::class.java)
+                                    .putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId),
+                            )
                         }
                         finish()
                     },

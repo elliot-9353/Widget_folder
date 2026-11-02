@@ -6,55 +6,49 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import com.example.folderwidget.data.Preset
+import com.example.folderwidget.data.PresetStore
 import com.example.folderwidget.ui.FolderTheme
+import com.example.folderwidget.ui.MainScreen
 
 class MainActivity : ComponentActivity() {
+    private var presets by mutableStateOf<List<Preset>>(emptyList())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presets = PresetStore.load(this)
         setContent {
             FolderTheme {
-                Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(24.dp),
-                        verticalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterVertically),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                    ) {
-                        Text(stringResource(R.string.main_title), style = MaterialTheme.typography.headlineMedium)
-                        Text(
-                            stringResource(R.string.main_steps),
-                            textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.bodyLarge,
-                        )
-                        Button(onClick = { pinWidget() }) {
-                            Text(stringResource(R.string.add_widget))
-                        }
-                    }
-                }
+                MainScreen(
+                    presets = presets,
+                    onAddPlain = { pinWidget(null) },
+                    onAddPreset = { pinWidget(it) },
+                    onDelete = {
+                        PresetStore.delete(this, it.id)
+                        presets = PresetStore.load(this)
+                    },
+                )
             }
         }
     }
 
-    private fun pinWidget() {
+    override fun onResume() {
+        super.onResume()
+        // Presets are saved from the widget settings, so refresh when coming back.
+        presets = PresetStore.load(this)
+    }
+
+    /** Asks the launcher to add the widget; with a [preset], the new widget starts from it. */
+    private fun pinWidget(preset: Preset?) {
         val manager = AppWidgetManager.getInstance(this)
-        if (manager.isRequestPinAppWidgetSupported) {
-            manager.requestPinAppWidget(ComponentName(this, FolderWidgetProvider::class.java), null, null)
-        } else {
+        if (!manager.isRequestPinAppWidgetSupported) {
             Toast.makeText(this, R.string.pin_unsupported, Toast.LENGTH_LONG).show()
+            return
         }
+        if (preset != null) PresetStore.setPending(this, preset.id) else PresetStore.clearPending(this)
+        manager.requestPinAppWidget(ComponentName(this, FolderWidgetProvider::class.java), null, null)
     }
 }
